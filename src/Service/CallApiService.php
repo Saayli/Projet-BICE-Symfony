@@ -19,4 +19,134 @@ class CallApiService
         'https://localhost:7238/InterventionGetAll');
         return $response->toArray();
     }
+
+    public function addIntervention($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/InterventionAjouter',
+        [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-type' => 'application/json'
+            ],
+            'body' => $jsonContent,
+        ]);
+        return $response->getStatusCode();
+    }
+
+    public function getByIdIntervention($data)
+    {
+        $tabId = array(
+            'id' => intval($data),
+        );
+        $jsonContent = json_encode($tabId);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/InterventionGetById',
+            [
+                'query' => $tabId
+            ]);
+        return $response->ToArray();
+    }
+
+    public function getMateriels()
+    {
+        $response = $this->client->request('POST',
+            'https://localhost:7238/MaterielGetAll');
+        return $response->toArray();
+    }
+
+    public function addMateriel($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/MaterielAjouter',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        dd($response->getStatusCode(), $data);
+        return $response->getStatusCode();
+    }
+
+    public function getVehicules()
+    {
+        $response = $this->client->request('POST',
+            'https://localhost:7238/VehiculeGetAll');
+        return $response->toArray();
+    }
+
+    public function addVehicule($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/VehiculeAjouter',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        return $response->getStatusCode();
+    }
+
+    public function getByIdVehicule($data)
+    {
+        $tabId = array(
+            'id' => intval($data),
+        );
+        $response = $this->client->request('POST',
+            'https://localhost:7238/VehiculeGetById',
+            [
+                'query' => $tabId
+            ]);
+        return $response->ToArray();
+    }
+
+    public function updateVehicule($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/VehiculeModifier',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        return $response->getStatusCode();
+    }
+
+    public function getByIdMateriel($data)
+    {
+        $tabId = array(
+            'id' => intval($data),
+        );
+        $response = $this->client->request('POST',
+            'https://localhost:7238/MaterielGetById',
+            [
+                'query' => $tabId
+            ]);
+        return $response->ToArray();
+    }
+
+    public function updateMateriel($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/MaterielModifier',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        return $response->getStatusCode();
+    }
 }

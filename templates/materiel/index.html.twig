@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello InterventionController!{% endblock %}
+
+{% block body %}
+    <div class="container py-3">
+        <h2>Ajouter un materiel</h2>
+        {{ form(formulaire) }}
+    </div>
+    <div class="example-wrapper">
+        <table class="table table-striped">
+            <tr>
+                <th>Identifiant</th>
+                <th>Dénomination</th>
+                <th>Catégorie</th>
+                <th>Utilisation</th>
+                <th>Utilisation Max.</th>
+                <th>Date de Contrôle</th>
+                <th>Date d'Expiration</th>
+                <th>Véhicule</th>
+                <th></th>
+            </tr>
+            {% for m in materiels %}
+                {% if m.estActive == true %}
+                <tr>
+                    <td>{{ m.id }}</td>
+                    <td>{{ m.denomination }}</td>
+                    <td>{{ m.categorie }}</td>
+                    <td>{{ m.utilisation }}</td>
+                    <td>{{ m.utilisationMax }}</td>
+                    <td>{{ m.dateControle }}</td>
+                    <td>{{ m.dateExpiration }}</td>
+                    <td>{{ m.id_vehicule }}</td>
+                    <td><a href="{{ path("materiel_modifier", {"id":m.id}) }}" class="btn btn-primary">Modifier</a>
+                        <a href="{{ path("materiel_supprimer", {"id":m.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

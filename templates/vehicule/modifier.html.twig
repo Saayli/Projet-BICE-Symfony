@@ -7,21 +7,19 @@
         <h1>Bienvenue sur le site de gestion de matériels, d'interventions et de véhicules : le projet BICE !</h1>
         <table class="table table-striped">
             <tr>
-                <th>Date</th>
                 <th>Dénomination</th>
-                <th>Description</th>
-                <th></th>
+                <th>Numéro</th>
+                <th>Immatriculation</th>
             </tr>
-            {% for i in interventions %}
                 <tr>
-                    <td>{{ i.date}}</td>
-                    <td>{{ i.denomination }}</td>
-                    <td>{{ i.description }}</td>
-                    <td><a href="{{ path("intervention_retour", {"id":i.id}) }}" class="btn btn-primary">Retour</a></td>
+                    <td>{{ v.denomination}}</td>
+                    <td>{{ v.numero }}</td>
+                    <td>{{ v.immatriculation }}</td>
+
                 </tr>
-            {% endfor %}
         </table>
-        <h2>Ajouter une intervention</h2>
+        <h2>Modifier le véhicule</h2>
         {{ form(formulaire) }}
+        <a href="{{ path("app_vehicule") }}" class="btn btn-warning">Annuler</a>
     </div>
 {% endblock %}

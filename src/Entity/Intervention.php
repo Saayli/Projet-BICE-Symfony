@@ -25,7 +25,7 @@ class Intervention
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: vehicule::class, inversedBy: 'id_intervention')]
+    #[ORM\ManyToMany(targetEntity: Vehicule::class, inversedBy: 'id_intervention')]
     private Collection $id_vehicule;
 
     public function __construct()
