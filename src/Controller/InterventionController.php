@@ -28,9 +28,14 @@ class InterventionController extends AbstractController
         //Liste Intervention
         $interventions = $callApiService->getInterventions();
         $vehicules = $callApiService->getVehicules();
-
+        $vehiculesactif = array();
+        foreach ($vehicules as $vehicule){
+            if ($vehicule['estActive'] == true){
+                array_push($vehiculesactif, $vehicule);
+            }
+        }
         $choices = [];
-        foreach ($vehicules as $vehicule) {
+        foreach ($vehiculesactif as $vehicule) {
             $choices[$vehicule['denomination']] = $vehicule['id'];
         }
 
