@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InterventionController!{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper">
+        <h1>Bienvenue sur le site de gestion de matériels, d'interventions et de véhicules : le projet BICE !</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Dénomination</th>
+                <th>Numéro</th>
+                <th>Immatriculation</th>
+                <th></th>
+            </tr>
+            {% for v in vehicules %}
+                <tr>
+                    <td>{{ v.denomination }}</td>
+                    <td>{{ v.numero }}</td>
+                    <td>{{ v.immatriculation }}</td>
+                    <td><a href="{{ path("VI_stock", {"id_vehicule":v.id, "id": interventionId}) }}" class="btn btn-primary">Stock</a>
+                        <a href="{{ path("intervention_vehicule_materiel_afficher", {"id_vehicule":v.id, "id": interventionId}) }}" class="btn btn-secondary">Voir Matériels</a>
+                        <a href="{{ path("intervention_retour", {"id_vehicule":v.id, "id": interventionId}) }}" class="btn btn-warning">Retour d'Intervention</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

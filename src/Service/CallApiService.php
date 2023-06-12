@@ -68,7 +68,6 @@ class CallApiService
                 ],
                 'body' => $jsonContent,
             ]);
-        dd($response->getStatusCode(), $data);
         return $response->getStatusCode();
     }
 
@@ -148,5 +147,76 @@ class CallApiService
                 'body' => $jsonContent,
             ]);
         return $response->getStatusCode();
+    }
+
+    public function addUtilisationMateriel($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/MaterielAjoutUtilisation',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        return $response->getStatusCode();
+    }
+
+    public function addVehiculeIntervention($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/VInterventionAjouter',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        return $response->getStatusCode();
+    }
+
+    public function getAllByIdVIntervention($data)
+    {
+        $tabId = array(
+            'id' => intval($data),
+        );
+        $response = $this->client->request('POST',
+            'https://localhost:7238/VInterventionGetAllById',
+            [
+                'query' => $tabId
+            ]);
+        return $response->ToArray();
+    }
+
+    public function addMateriel_VI($data)
+    {
+        $jsonContent = json_encode($data);
+        $response = $this->client->request('POST',
+            'https://localhost:7238/Materiel_VIAjouter',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json'
+                ],
+                'body' => $jsonContent,
+            ]);
+        return $response->getStatusCode();
+    }
+
+    public function getAllByIdMateriel_VI($data)
+    {
+        $tabId = array(
+            'id' => intval($data),
+        );
+        $response = $this->client->request('POST',
+            'https://localhost:7238/Materiel_VIGettAllById',
+            [
+                'query' => $tabId
+            ]);
+        return $response->ToArray();
     }
 }

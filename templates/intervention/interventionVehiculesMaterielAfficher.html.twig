@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InterventionController!{% endblock %}
+
+{% block body %}
+    <div class="example-wrapper">
+        <h1>Bienvenue sur le site de gestion de matériels, d'interventions et de véhicules : le projet BICE !</h1>
+        <table class="table table-striped">
+            <tr>
+                <th>Identifiant</th>
+                <th>Dénomination</th>
+                <th>Stock</th>
+                <th>Catégorie</th>
+                <th>Utilisation</th>
+                <th>Utilisation Max.</th>
+                <th>Date de Contrôle</th>
+                <th>Date d'Expiration</th>
+            </tr>
+            {% for m in materiels %}
+                {% if m.stock == 'Perdu' %}
+                    <tr class="table-danger">
+                        <td>{{ m.id }}</td>
+                        <td>{{ m.denomination }}</td>
+                        <td> {{ m.stock }}</td>
+                        <td>{{ m.categorie }}</td>
+                        <td>{{ m.utilisation }}</td>
+                        <td>{{ m.utilisationMax }}</td>
+                        {% if m.dateControle != null %}
+                            <td>{{ m.dateControle  | date('d/m/Y')}}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        {% if m.dateExpiration != null %}
+                            <td>{{ m.dateExpiration  | date('d/m/Y')}}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ m.id }}</td>
+                        <td>{{ m.denomination }}</td>
+                        <td> {{ m.stock }}</td>
+                        <td>{{ m.categorie }}</td>
+                        <td>{{ m.utilisation }}</td>
+                        <td>{{ m.utilisationMax }}</td>
+                        {% if m.dateControle != null %}
+                            <td>{{ m.dateControle  | date('d/m/Y')}}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        {% if m.dateExpiration != null %}
+                            <td>{{ m.dateExpiration  | date('d/m/Y')}}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

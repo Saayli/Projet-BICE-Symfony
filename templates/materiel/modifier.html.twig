@@ -22,8 +22,16 @@
                 <td>{{ m.categorie }}</td>
                 <td>{{ m.utilisation }}</td>
                 <td>{{ m.utilisationMax }}</td>
-                <td>{{ m.dateControle }}</td>
-                <td>{{ m.dateExpiration }}</td>
+                {% if m.dateControle != null %}
+                    <td>{{ m.dateControle  | date('d/m/Y')}}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                {% if m.dateExpiration != null %}
+                    <td>{{ m.dateExpiration  | date('d/m/Y')}}</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
                 <td>{{ m.id_vehicule }}</td>
             </tr>
         </table>

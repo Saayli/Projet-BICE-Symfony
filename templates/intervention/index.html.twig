@@ -14,10 +14,10 @@
             </tr>
             {% for i in interventions %}
                 <tr>
-                    <td>{{ i.date}}</td>
+                    <td>{{ i.date | date('d M Y H:i')}}</td>
                     <td>{{ i.denomination }}</td>
                     <td>{{ i.description }}</td>
-                    <td><a href="{{ path("intervention_retour", {"id":i.id}) }}" class="btn btn-primary">Retour</a></td>
+                    <td><a href="{{ path("intervention_vehicule_afficher", {"id":i.id}) }}" class="btn btn-primary">Véhicules</a></td>
                 </tr>
             {% endfor %}
         </table>
